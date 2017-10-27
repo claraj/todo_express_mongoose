@@ -18,14 +18,8 @@ chai.use(chaiHTTP);
 let mongodb = require('mongodb');
 let ObjectID = mongodb.ObjectID;
 
-let config = require('config');
 
-
-// On your own computer, if can set environment variables
-// Set the environment variable MONGO_URL to the correct URL
-// If you can't set environment variables on your system, replace
-// process.env.MONGO_URL with the actual URL string
-let test_db_url = process.env.MONGO_URL;  // TODO replace this with a test database, NOT the real database!
+let test_db_url = process.env.MONGO_URL;
 
 
 // Tests!
@@ -96,7 +90,7 @@ describe('open and empty test db before and close db after ', () => {
               expect(res.status).to.equal(404);
               
               chai.request(server)
-                .get('/task/59e0ed7d4140789006aa5fae')  // A valid _id but not in the database.
+                .get('/task/1234567890abcdef1234567890')  // A valid _id but not in the database.
                 .end((err, res) => {
                   expect(res.status).to.equal(404);
                   done();
