@@ -12,8 +12,11 @@ var mongoose = require('mongoose');
 var db_url = process.env.MONGO_URL;
 
 // And connect to mongoose.
-mongoose.connect(db_url, { useMongoClient: true });
 mongoose.promise = global.Promise;  // use native ES6 promises
+mongoose.connect(db_url, { useMongoClient: true })
+  .then( () => {  /* connected */ } )
+  .catch( (err) => { console.log(err); });
+
 
 var index = require('./routes/index');
 
