@@ -158,7 +158,6 @@ describe('open and empty test db before and close db after ', () => {
       ])
         .then((result)=>{
           
-          //console.log(result)
           walk_dog = result.ops[0];
           oil_change = result.ops[1];
           assignment = result.ops[2];
