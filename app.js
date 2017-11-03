@@ -12,7 +12,7 @@ var mongoose = require('mongoose');
 var db_url = process.env.MONGO_URL;
 
 // And connect to mongoose, log success or error
-mongoose.promise = global.Promise;  // use native ES6 promises
+mongoose.Promise = global.Promise;  // use native ES6 promises
 mongoose.connect(db_url, { useMongoClient: true })
   .then( () => {  console.log('Connected to MongoDB') } )
   .catch( (err) => { console.log('Error Connecting to MongoDB', err); });
@@ -56,11 +56,10 @@ app.use(function(err, req, res, next) {
   if (err.kind === 'ObjectId' && err.name === 'CastError') {
     err.status = 404;
   }
-  
+
   // render the error page
   res.status(err.status || 500);
   res.render('error');
 });
 
 module.exports = app;
-
